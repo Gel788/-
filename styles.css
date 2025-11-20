@@ -1,0 +1,774 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --text-primary: #1a1a2e;
+    --text-secondary: #6c757d;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0a0a1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+    color: var(--text-primary);
+}
+
+/* Анимированный фон с градиентными орбами */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    top: -200px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 7s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 14s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-50px, 50px) scale(0.9);
+    }
+}
+
+/* Конфетти */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    animation: confettiFall linear infinite;
+}
+
+.confetti:nth-child(1) {
+    left: 10%;
+    animation-duration: 4s;
+    animation-delay: 0s;
+    background: #ff6b6b;
+    transform: rotate(45deg);
+}
+
+.confetti:nth-child(2) {
+    left: 25%;
+    animation-duration: 5s;
+    animation-delay: 0.8s;
+    background: #4ecdc4;
+    transform: rotate(-45deg);
+}
+
+.confetti:nth-child(3) {
+    left: 40%;
+    animation-duration: 4.5s;
+    animation-delay: 1.5s;
+    background: #ffe66d;
+    transform: rotate(30deg);
+}
+
+.confetti:nth-child(4) {
+    left: 55%;
+    animation-duration: 5.5s;
+    animation-delay: 0.3s;
+    background: #a8e6cf;
+    transform: rotate(-30deg);
+}
+
+.confetti:nth-child(5) {
+    left: 70%;
+    animation-duration: 4.8s;
+    animation-delay: 1.2s;
+    background: #ff8b94;
+    transform: rotate(60deg);
+}
+
+.confetti:nth-child(6) {
+    left: 85%;
+    animation-duration: 5.2s;
+    animation-delay: 0.6s;
+    background: #95e1d3;
+    transform: rotate(-60deg);
+}
+
+.confetti:nth-child(7) {
+    left: 50%;
+    animation-duration: 4.3s;
+    animation-delay: 2s;
+    background: #f38181;
+    transform: rotate(15deg);
+}
+
+.confetti:nth-child(8) {
+    left: 30%;
+    animation-duration: 5.8s;
+    animation-delay: 1.8s;
+    background: #aa96da;
+    transform: rotate(-15deg);
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Контейнер */
+.container {
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    box-shadow: var(--shadow-xl), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    padding: 48px;
+    position: relative;
+    z-index: 2;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Логотип */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: var(--secondary-gradient);
+    box-shadow: var(--shadow-md);
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.logo-text {
+    font-size: 26px;
+    font-weight: 700;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+/* Основной контент */
+.main-content {
+    text-align: center;
+}
+
+.trophy-icon {
+    margin-bottom: 24px;
+    animation: trophyFloat 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes trophyFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(5deg);
+    }
+}
+
+.congratulations {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 32px;
+    letter-spacing: -1px;
+}
+
+.gradient-text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    animation: gradientShift 5s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Блок приза */
+.prize-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.prize-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--secondary-gradient);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
+}
+
+.iphone-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.iphone-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+.iphone-image {
+    font-size: 120px;
+    line-height: 1;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+    animation: phoneShake 4s ease-in-out infinite;
+}
+
+@keyframes phoneShake {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-3deg);
+    }
+    75% {
+        transform: rotate(3deg);
+    }
+}
+
+.prize-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.prize-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.prize-tag {
+    display: inline-block;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+/* Информационный блок */
+.info-box {
+    background: rgba(255, 193, 7, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 32px;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.info-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.info-text {
+    color: #856404;
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+/* Форма */
+.delivery-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.input-wrapper textarea + .input-icon {
+    top: 20px;
+    transform: none;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 16px 50px 16px 18px;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-primary);
+}
+
+.form-group textarea {
+    padding: 16px 50px 16px 18px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #adb5bd;
+}
+
+/* Стоимость доставки */
+.delivery-cost {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-md);
+}
+
+.cost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cost-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.cost-icon {
+    font-size: 20px;
+}
+
+.cost-value {
+    font-size: 28px;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+/* Кнопка отправки */
+.submit-btn {
+    width: 100%;
+    padding: 20px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.3px;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-arrow {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.note-icon {
+    font-size: 14px;
+}
+
+/* Футер */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footer p {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Glass effect utility */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 32px 24px;
+        border-radius: 24px;
+    }
+
+    .congratulations {
+        font-size: 32px;
+    }
+
+    .prize-title {
+        font-size: 26px;
+    }
+
+    .iphone-image {
+        font-size: 100px;
+    }
+
+    .trophy-icon svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-text {
+        font-size: 22px;
+    }
+
+    .cost-value {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    .congratulations {
+        font-size: 28px;
+    }
+
+    .prize-title {
+        font-size: 22px;
+    }
+
+    .prize-box {
+        padding: 32px 24px;
+    }
+
+    .iphone-image {
+        font-size: 80px;
+    }
+
+    .trophy-icon svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 14px 45px 14px 16px;
+        font-size: 15px;
+    }
+
+    .submit-btn {
+        padding: 18px;
+        font-size: 16px;
+    }
+
+    .cost-value {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 24px 16px;
+    }
+
+    .prize-box {
+        padding: 24px 20px;
+    }
+
+    .iphone-image {
+        font-size: 70px;
+    }
+}
+
+/* Поддержка темной темы системы */
+@media (prefers-color-scheme: dark) {
+    .container {
+        background: rgba(26, 26, 46, 0.95);
+        color: #ffffff;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .prize-title {
+        color: #ffffff;
+    }
+
+    .form-group label {
+        color: rgba(255, 255, 255, 0.9);
+    }
+}

