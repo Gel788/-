@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата успешна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment-success.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="success-container">
+        <div class="success-content glass-effect">
+            <div class="success-icon">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" stroke="url(#successGradient)" stroke-width="4" fill="none"/>
+                    <path d="M30 50L45 65L70 35" stroke="url(#successGradient)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="successGradient" x1="50" y1="0" x2="50" y2="100">
+                            <stop offset="0%" stop-color="#4ecdc4"/>
+                            <stop offset="100%" stop-color="#44a08d"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <h1 class="success-title">Оплата успешна!</h1>
+            <p class="success-subtitle">Ваш платеж обработан</p>
+            
+            <div class="success-details">
+                <div class="detail-item">
+                    <span class="detail-label">Сумма:</span>
+                    <span class="detail-value" id="successAmount">1 500 ₽</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">СБП номер:</span>
+                    <span class="detail-value" id="successSbp">2000123456789</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Статус:</span>
+                    <span class="detail-value status-success">Оплачено</span>
+                </div>
+            </div>
+            
+            <div class="success-message">
+                <p>Ваш приз будет отправлен в течение 24 часов после подтверждения оплаты.</p>
+            </div>
+            
+            <button class="success-btn" onclick="window.close()">
+                <span>Закрыть</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="payment-success.js"></script>
+</body>
+</html>
+

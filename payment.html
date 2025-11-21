@@ -64,16 +64,91 @@
                 </div>
             </div>
 
-            <div class="payment-methods">
-                <div class="method-tabs">
-                    <button class="method-tab active" data-method="qr">
-                        <span class="tab-icon">📱</span>
-                        <span>QR-код</span>
+            <!-- Форма выбора банка -->
+            <div class="bank-selection" id="bankSelection">
+                <div class="bank-selection-header">
+                    <h2>Выберите ваш банк</h2>
+                    <p>Для привязки СБП счета выберите банк, в котором у вас открыт счет</p>
+                </div>
+                <div class="banks-grid">
+                    <div class="bank-card" data-bank="sber">
+                        <div class="bank-logo sber-logo">Сбер</div>
+                        <div class="bank-name">Сбербанк</div>
+                    </div>
+                    <div class="bank-card" data-bank="vtb">
+                        <div class="bank-logo vtb-logo">ВТБ</div>
+                        <div class="bank-name">ВТБ</div>
+                    </div>
+                    <div class="bank-card" data-bank="tinkoff">
+                        <div class="bank-logo tinkoff-logo">Т</div>
+                        <div class="bank-name">Тинькофф</div>
+                    </div>
+                    <div class="bank-card" data-bank="alfa">
+                        <div class="bank-logo alfa-logo">α</div>
+                        <div class="bank-name">Альфа-Банк</div>
+                    </div>
+                    <div class="bank-card" data-bank="raiffeisen">
+                        <div class="bank-logo raiffeisen-logo">R</div>
+                        <div class="bank-name">Райффайзенбанк</div>
+                    </div>
+                    <div class="bank-card" data-bank="gazprombank">
+                        <div class="bank-logo gazprombank-logo">ГПБ</div>
+                        <div class="bank-name">Газпромбанк</div>
+                    </div>
+                    <div class="bank-card" data-bank="rosbank">
+                        <div class="bank-logo rosbank-logo">РБ</div>
+                        <div class="bank-name">Росбанк</div>
+                    </div>
+                    <div class="bank-card" data-bank="other">
+                        <div class="bank-logo other-logo">🏦</div>
+                        <div class="bank-name">Другой банк</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Форма привязки СБП счета (скрыта до выбора банка) -->
+            <div class="sbp-link-form hidden glass-effect" id="sbpLinkForm">
+                <div class="link-form-header">
+                    <div class="link-form-icon">🔗</div>
+                    <h2>Привязка СБП счета</h2>
+                    <p>Введите номер телефона, привязанный к вашему банковскому счету</p>
+                </div>
+                
+                <div class="selected-bank-preview">
+                    <span class="preview-label">Выбранный банк:</span>
+                    <span class="preview-bank" id="previewBankName">Сбербанк</span>
+                </div>
+
+                <form class="link-form" id="linkForm">
+                    <div class="form-group">
+                        <label for="linkPhone">
+                            <span>Номер телефона</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="linkPhone" name="linkPhone" required placeholder="+7 (999) 123-45-67" autocomplete="tel">
+                            <span class="input-icon">📞</span>
+                        </div>
+                        <p class="input-hint">Номер должен быть привязан к счету в выбранном банке</p>
+                    </div>
+
+                    <button type="submit" class="link-submit-btn">
+                        <span class="btn-text">Привязать счет</span>
+                        <span class="btn-arrow">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </button>
-                    <button class="method-tab" data-method="phone">
-                        <span class="tab-icon">📞</span>
-                        <span>По номеру</span>
-                    </button>
+                </form>
+            </div>
+
+            <!-- Методы оплаты (скрыты до привязки счета) -->
+            <div class="payment-methods hidden" id="paymentMethods">
+                <div class="selected-bank-info glass-effect">
+                    <div class="selected-bank-display">
+                        <span class="bank-label">Выбранный банк:</span>
+                        <span class="bank-value" id="selectedBankName">Сбербанк</span>
+                    </div>
                 </div>
 
                 <div class="method-content" id="qrMethod">
@@ -97,33 +172,44 @@
                     </div>
                 </div>
 
-                <div class="method-content hidden" id="phoneMethod">
-                    <div class="phone-payment glass-effect">
-                        <div class="phone-input-group">
-                            <label>Номер телефона получателя</label>
-                            <div class="phone-display" id="phoneDisplay">+7 (999) 123-45-67</div>
+                <div class="sbp-payment glass-effect">
+                    <div class="sbp-header">
+                        <div class="sbp-icon">💳</div>
+                        <h3>Или оплатите по СБП номеру</h3>
+                    </div>
+                    <div class="sbp-number-container">
+                        <label>СБП номер получателя</label>
+                        <div class="sbp-number-display" id="sbpNumberDisplay">
+                            <span id="sbpNumber">Генерация...</span>
                         </div>
-                        <div class="phone-instructions">
-                            <h3>Как оплатить:</h3>
-                            <ol>
-                                <li>Откройте приложение вашего банка</li>
-                                <li>Выберите "Перевод по номеру телефона"</li>
-                                <li>Введите номер: <strong id="phoneNumber">+79991234567</strong></li>
-                                <li>Введите сумму: <strong>1 500 ₽</strong></li>
-                                <li>Подтвердите перевод</li>
-                            </ol>
-                        </div>
-                        <button class="copy-btn" id="copyPhoneBtn">
+                        <button class="copy-btn" id="copySbpBtn">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                 <path d="M12 6V3C12 2.44772 11.5523 2 11 2H3C2.44772 2 2 2.44772 2 3V11C2 11.5523 2.44772 12 3 12H6M8 6H15C15.5523 6 16 6.44772 16 7V15C16 15.5523 15.5523 16 15 16H8C7.44772 16 7 15.5523 7 15V7C7 6.44772 7.44772 6 8 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>Скопировать номер</span>
+                            <span>Скопировать СБП номер</span>
                         </button>
                     </div>
+                    <div class="sbp-instructions">
+                        <h3>Как оплатить по СБП:</h3>
+                        <ol>
+                            <li>Нажмите кнопку "Оплатить по СБП" ниже</li>
+                            <li>Вы будете перенаправлены в приложение вашего банка</li>
+                            <li>Подтвердите перевод</li>
+                        </ol>
+                    </div>
+                    <button class="sbp-pay-btn" id="sbpPayBtn">
+                        <span class="btn-icon">💳</span>
+                        <span class="btn-text">Оплатить по СБП</span>
+                        <span class="btn-arrow">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
                 </div>
             </div>
 
-            <div class="payment-timer glass-effect">
+            <div class="payment-timer glass-effect hidden" id="paymentTimer">
                 <div class="timer-icon">⏱️</div>
                 <div class="timer-content">
                     <p class="timer-label">Время на оплату</p>
@@ -132,7 +218,7 @@
                 </div>
             </div>
 
-            <div class="payment-info glass-effect">
+            <div class="payment-info glass-effect hidden" id="paymentInfo">
                 <div class="info-item">
                     <span class="info-label">Получатель:</span>
                     <span class="info-value" id="recipientName">Иванов Иван Иванович</span>
@@ -150,7 +236,7 @@
                 </div>
             </div>
 
-            <div class="payment-actions">
+            <div class="payment-actions hidden" id="paymentActions">
                 <button class="action-btn secondary" onclick="window.history.back()">
                     Отмена
                 </button>
@@ -162,7 +248,7 @@
                 </button>
             </div>
 
-            <div class="payment-help">
+            <div class="payment-help hidden" id="paymentHelp">
                 <p>💡 <strong>Совет:</strong> После оплаты нажмите "Проверить оплату" для подтверждения</p>
                 <p>🔒 Оплата защищена системой СБП. Ваши данные в безопасности.</p>
             </div>
