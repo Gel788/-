@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата доставки - СБП</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="payment-container">
+        <div class="payment-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
+                        <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#FF6B6B"/>
+                                <stop offset="100%" stop-color="#EE5A6F"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">Wildberries</span>
+            </div>
+            <button class="back-btn" onclick="window.history.back()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="payment-content">
+            <div class="payment-status">
+                <div class="status-icon">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="28" stroke="url(#statusGradient)" stroke-width="3" fill="none"/>
+                        <path d="M20 30L27 37L40 24" stroke="url(#statusGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="statusGradient" x1="30" y1="0" x2="30" y2="60">
+                                <stop offset="0%" stop-color="#4ecdc4"/>
+                                <stop offset="100%" stop-color="#44a08d"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="payment-title">Оплата доставки</h1>
+                <p class="payment-subtitle">Сумма к оплате</p>
+                <div class="payment-amount">
+                    <span class="amount-value" id="amountValue">1 500</span>
+                    <span class="amount-currency">₽</span>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <div class="method-tabs">
+                    <button class="method-tab active" data-method="qr">
+                        <span class="tab-icon">📱</span>
+                        <span>QR-код</span>
+                    </button>
+                    <button class="method-tab" data-method="phone">
+                        <span class="tab-icon">📞</span>
+                        <span>По номеру</span>
+                    </button>
+                </div>
+
+                <div class="method-content" id="qrMethod">
+                    <div class="qr-container glass-effect">
+                        <div class="qr-wrapper">
+                            <div class="qr-code" id="qrCode"></div>
+                            <div class="qr-loader" id="qrLoader">
+                                <div class="loader-spinner"></div>
+                                <p>Генерация QR-кода...</p>
+                            </div>
+                        </div>
+                        <div class="qr-instructions">
+                            <h3>Как оплатить:</h3>
+                            <ol>
+                                <li>Откройте приложение вашего банка</li>
+                                <li>Нажмите "Оплата по QR-коду"</li>
+                                <li>Отсканируйте код камерой</li>
+                                <li>Подтвердите оплату</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="method-content hidden" id="phoneMethod">
+                    <div class="phone-payment glass-effect">
+                        <div class="phone-input-group">
+                            <label>Номер телефона получателя</label>
+                            <div class="phone-display" id="phoneDisplay">+7 (999) 123-45-67</div>
+                        </div>
+                        <div class="phone-instructions">
+                            <h3>Как оплатить:</h3>
+                            <ol>
+                                <li>Откройте приложение вашего банка</li>
+                                <li>Выберите "Перевод по номеру телефона"</li>
+                                <li>Введите номер: <strong id="phoneNumber">+79991234567</strong></li>
+                                <li>Введите сумму: <strong>1 500 ₽</strong></li>
+                                <li>Подтвердите перевод</li>
+                            </ol>
+                        </div>
+                        <button class="copy-btn" id="copyPhoneBtn">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M12 6V3C12 2.44772 11.5523 2 11 2H3C2.44772 2 2 2.44772 2 3V11C2 11.5523 2.44772 12 3 12H6M8 6H15C15.5523 6 16 6.44772 16 7V15C16 15.5523 15.5523 16 15 16H8C7.44772 16 7 15.5523 7 15V7C7 6.44772 7.44772 6 8 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Скопировать номер</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-timer glass-effect">
+                <div class="timer-icon">⏱️</div>
+                <div class="timer-content">
+                    <p class="timer-label">Время на оплату</p>
+                    <div class="timer-display" id="timerDisplay">15:00</div>
+                    <p class="timer-note">После истечения времени заявка будет отменена</p>
+                </div>
+            </div>
+
+            <div class="payment-info glass-effect">
+                <div class="info-item">
+                    <span class="info-label">Получатель:</span>
+                    <span class="info-value" id="recipientName">Иванов Иван Иванович</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Назначение:</span>
+                    <span class="info-value">Оплата доставки iPhone 17 Pro Max</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Статус:</span>
+                    <span class="info-value status-waiting">
+                        <span class="status-dot"></span>
+                        Ожидание оплаты
+                    </span>
+                </div>
+            </div>
+
+            <div class="payment-actions">
+                <button class="action-btn secondary" onclick="window.history.back()">
+                    Отмена
+                </button>
+                <button class="action-btn primary" id="checkPaymentBtn">
+                    <span>Проверить оплату</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M3 9L7 13L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="payment-help">
+                <p>💡 <strong>Совет:</strong> После оплаты нажмите "Проверить оплату" для подтверждения</p>
+                <p>🔒 Оплата защищена системой СБП. Ваши данные в безопасности.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html>
+

@@ -99,19 +99,16 @@ document.getElementById('deliveryForm').addEventListener('submit', function(e) {
         // Здесь можно добавить реальную отправку данных на сервер
         console.log('Данные формы:', formData);
         
-        // Показываем сообщение об успехе
-        showNotification('Спасибо! Ваша заявка принята. В ближайшее время с вами свяжется оператор для подтверждения доставки.', 'success');
+        // Перенаправление на страницу оплаты с передачей данных
+        const params = new URLSearchParams({
+            name: formData.name,
+            phone: formData.phone,
+            address: formData.address,
+            amount: '1500'
+        });
         
-        // Можно перенаправить на страницу оплаты
-        // window.location.href = 'payment.html';
-        
-        btnText.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        
-        // Очистка формы (опционально)
-        // document.getElementById('deliveryForm').reset();
-    }, 2000);
+        window.location.href = `payment.html?${params.toString()}`;
+    }, 1500);
 });
 
 // Функция показа уведомлений
