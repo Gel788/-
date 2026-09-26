@@ -1,0 +1,49 @@
+:root {
+  /* Brand palette — LUNA BIANCA */
+  --ivory: #f8f6f1;
+  --warm-white: #ffffff;
+  --soft-beige: #e9e3d8;
+  --champagne: #c8b79c;
+  --champagne-deep: #b5a388;
+  --graphite: #242424;
+  --graphite-soft: #3a3a3a;
+  --graphite-muted: #6b6760;
+  --silver: #d4d0c8;
+  --silver-glow: rgba(200, 183, 156, 0.35);
+  --danger: #a65d4f;
+  --success: #5a7a62;
+  --overlay: rgba(36, 36, 36, 0.48);
+
+  --bg: var(--ivory);
+  --bg-elevated: var(--warm-white);
+  --bg-subtle: var(--soft-beige);
+  --text: var(--graphite);
+  --text-secondary: var(--graphite-muted);
+  --text-inverse: var(--warm-white);
+  --accent: var(--champagne);
+  --accent-hover: var(--champagne-deep);
+  --border: rgba(36, 36, 36, 0.08);
+  --border-strong: rgba(36, 36, 36, 0.14);
+
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  --shadow-soft: 0 8px 28px rgba(36, 36, 36, 0.06);
+  --shadow-card: 0 4px 20px rgba(36, 36, 36, 0.05);
+  --shadow-lift: 0 12px 40px rgba(36, 36, 36, 0.1);
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+
+  --phone-w: 390px;
+  --phone-h: 844px;
+  --nav-h: 72px;
+  --safe-top: 54px;
+  --safe-bottom: 28px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
